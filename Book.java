@@ -1,10 +1,10 @@
 Public Class Book{
     private String title;
-    private int ISBN;
+    private String ISBN;
     private int price;
     private int yearPublished;
 
-    public Book(String title, int ISBN, int price, int yearPublished) {
+    public Book(String title, String ISBN, int price, int yearPublished) {
         this.title = title;
         this.ISBN = ISBN;
         this.price = price;
@@ -15,7 +15,7 @@ Public Class Book{
         return price;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
@@ -37,7 +37,7 @@ Public Class Book{
         this.yearPublished = yearPublished;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -49,5 +49,10 @@ Public Class Book{
     }
     public boolean isForSale() {
         return true; 
+    }
+
+    public boolean isOutdated(int maxAge) {
+        int currentYear = Year.now().getValue();
+        return (currentYear - yearPublished) > maxAge;
     }
 }
