@@ -51,12 +51,10 @@ public double buyBook(String isbn, int quantity, String email, String address) {
                 }
                 paperBook.reduceStock(quantity);
                 ShippingService.send(address, paperBook);
-                System.out.println("Shipping PaperBook to " + address);
             }
 
             if (book instanceof EBook ebook) {
                 MailService.send(email, ebook);
-                System.out.println("Sending EBook to " + email);
             }
 
             return total;
