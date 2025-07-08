@@ -21,7 +21,7 @@ public class PaperBook extends Book {
 
     public void reduceStock(int quantity) {
         if (quantity > stock) {
-            throw new RuntimeException("Not enough stock available.");
+            throw new RuntimeException("Not enough stock available for book " + getTitle() + ".");
         }
         stock -= quantity;
     }

@@ -26,7 +26,7 @@ public class Inventory {
     while (iterator.hasNext()) {
         Book book = iterator.next();
         if (book.isOutdated(maxAge)) {
-            books.remove(book);
+            iterator.remove();
         } else {
             keptBooks.add(book);
         }
@@ -40,7 +40,7 @@ public double buyBook(String isbn, int quantity, String email, String address) {
         if (book.getISBN().equals(isbn)) {
 
             if (book instanceof DemoBook) {
-                throw new RuntimeException("Book is not for sale.");
+                throw new RuntimeException("Book " + book.getTitle() + " is not for sale. It is  demo only.");
             }
 
             double total = book.getPrice() * quantity;
@@ -58,7 +58,7 @@ public double buyBook(String isbn, int quantity, String email, String address) {
         }
     }
 
-    throw new RuntimeException("Book with ISBN not found.");
+    throw new RuntimeException("Book with ISBN " + isbn + " not found.");
 }
 
 
