@@ -1,7 +1,7 @@
-Public class PaperBook extends Book {
+public class PaperBook extends Book {
     private int stock;
 
-    public PaperBook(String title, int ISBN, int price, int yearPublished, int stock) {
+    public PaperBook(String title, String ISBN, double price, int yearPublished, int stock) {
         super(title, ISBN, price, yearPublished);
         this.stock = stock;
     }
@@ -17,5 +17,12 @@ Public class PaperBook extends Book {
     @Override
     public boolean isShippable() {
         return true; 
+    }
+
+    public void reduceStock(int quantity) {
+        if (quantity > stock) {
+            throw new RuntimeException("Not enough stock available.");
+        }
+        stock -= quantity;
     }
 }

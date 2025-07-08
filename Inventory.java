@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Inventory {
     private ArrayList<Book> books;
@@ -22,11 +22,11 @@ public class Inventory {
     public List<Book> removeOutdatedBooks(int maxAge) {
     List<Book> keptBooks = new ArrayList<>();
 
-    Iterator<Book> iterator = inventory.iterator();
+    Iterator<Book> iterator = books.iterator();
     while (iterator.hasNext()) {
         Book book = iterator.next();
         if (book.isOutdated(maxAge)) {
-            iterator.remove(); 
+            books.remove(book);
         } else {
             keptBooks.add(book);
         }
@@ -36,19 +36,16 @@ public class Inventory {
 }
 
 public double buyBook(String isbn, int quantity, String email, String address) {
-    for (Book book : inventory) {
-        if (book.getIsbn().equals(isbn)) {
+    for (Book book : books) {
+        if (book.getISBN().equals(isbn)) {
 
-            if (book instanceof ShowcaseBook) {
+            if (book instanceof DemoBook) {
                 throw new RuntimeException("Book is not for sale.");
             }
 
             double total = book.getPrice() * quantity;
 
             if (book instanceof PaperBook paperBook) {
-                if (paperBook.getStock() < quantity) {
-                    throw new RuntimeException("Not enough stock.");
-                }
                 paperBook.reduceStock(quantity);
                 ShippingService.send(address, paperBook);
             }

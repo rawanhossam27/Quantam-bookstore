@@ -1,17 +1,20 @@
-Public Class Book{
+import java.time.Year;
+
+public abstract class Book {
+
     private String title;
     private String ISBN;
-    private int price;
+    private double price;
     private int yearPublished;
 
-    public Book(String title, String ISBN, int price, int yearPublished) {
+    public Book(String title, String ISBN, double price, int yearPublished) {
         this.title = title;
         this.ISBN = ISBN;
         this.price = price;
         this.yearPublished = yearPublished;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
